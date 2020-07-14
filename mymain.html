@@ -1,0 +1,80 @@
+<html>
+ <head>
+    <title>Image Gallery </title>
+	<link type="text/css" rel="stylesheet" href="bootstrap.css">
+	<link type="text/css" rel="stylesheet" href="mystyles.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.js"> </script>
+	
+ </head>
+ <body>
+    <div class="container">
+	   <h1> Image Gallery </h1>
+	   <div class="row" >
+	           <div class="col-md-3">
+			   <img src="img1.jpg" alt="image1" class="crop-img" id="image1"/>
+		       </div>
+			   <div class="col-md-3">
+			   <img src="img2.jpg" alt="image2" class="crop-img" id="image2"/>
+		       </div>
+			   <div class="col-md-3">
+			   <img src="img3.jpg" alt="image3" class="crop-img" id="image3"/>
+		       </div>
+			   <div class="col-md-3">
+			   <img src="img4.jpg" alt="image4" class="crop-img" id="image4"/>
+		       </div>
+		</div>
+		<div class="row">
+			<div class="col-md-1">
+				<button id="backward">&lt;</button>
+			</div>
+			<div class="col-md-10">
+				<img id="bigImage" class="large-img" src="img1.jpg" alt="graffittied building"/> 
+			</div>
+			<div class="col-md-1">
+				<button id="forward">&gt;</button>
+			</div>
+		</div>
+	</div>
+   <script>
+      
+		var paused = false;
+		$(".crop-img").click(function(){
+			$("#bigImage").attr('src', 
+				$(this).attr('src'));
+		});
+
+		var counter = 1;
+	
+		$("#image"+counter).click();
+		$("#backward").click(function (){
+			counter = counter - 1;
+			if(counter < 1){
+				counter = 4;
+			}
+			$("#image"+counter).click();
+		});
+
+		$("#forward").click(function (){
+		
+			counter = counter + 1;
+			
+			if(counter > 4){
+				counter = 1;
+			}
+		
+			$("#image"+counter).click();
+		});
+
+		$("#bigImage").click(function (){
+			paused = !paused;
+		});
+
+		setInterval(function (){
+			if(!paused){
+			
+				$("#forward").click();
+			};
+		}, 3000);		
+   </script>   
+			   
+ </body>
